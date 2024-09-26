@@ -1,24 +1,26 @@
 package repositories
 
-import (
-	"gorm.io/gorm"
-)
-
-type FoodRepository struct {
-	DB *gorm.DB
-}
-
-//func (s *FoodRepository) SelectALL() (data *[]types.ShopDAO, err error) {
+//import (
+//	"github.com/3boku/backend1/types"
+//	"github.com/google/uuid"
+//	"gorm.io/gorm"
+//)
+//
+//type FoodRepository struct {
+//	DB *gorm.DB
+//}
+//
+//func (s *FoodRepository) SelectALL() (data *[]types.FoodDAO, err error) {
 //	err = s.DB.Find(&data).Error
 //	return data, err
 //}
 //
-//func (s *FoodRepository) SelectByName(name string) (data *types.ShopDAO, err error) {
+//func (s *FoodRepository) SelectByName(name string) (data *types.FoodDAO, err error) {
 //	err = s.DB.First(&data, "name =?", name).Error
 //	return data, err
 //}
 //
-//func (s *FoodRepository) Create(shop *types.ShopDAO) (data *types.ShopDAO, err error) {
+//func (s *FoodRepository) Create(shop *types.FoodDAO) (data *types.FoodDAO, err error) {
 //	id, _ := uuid.NewUUID()
 //	input := types.Shop{
 //		UUID:      id,
@@ -41,6 +43,6 @@ type FoodRepository struct {
 //}
 //
 //func (s *FoodRepository) Delete(id string) (err error) {
-//	err = s.DB.Delete(&types.Shop{}, id).Error
+//	err = s.DB.Delete(&types.FoodDAO{}, id).Error
 //	return err
 //}

@@ -12,8 +12,15 @@ type Food struct {
 	Like   int    `json:"like"`
 }
 
-type FoodDAO struct {
+type FoodInput struct {
 	Name  string `json:"name"`
 	Price int    `json:"price"`
 	Like  int    `json:"like"`
+}
+
+type FoodDAO struct {
+	ShopID string
+	Name   string `json:"name"`
+	Price  int    `json:"price"`
+	Like   int    `json:"like"`
 }
