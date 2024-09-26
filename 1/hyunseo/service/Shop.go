@@ -7,11 +7,11 @@ import (
 )
 
 type Shop struct {
-	shopService *repositories.ShopService
+	ShopService *repositories.ShopService
 }
 
 func (s *Shop) CreateShop(shop *types.ShopDAO) (statusCode int, data *types.ShopDAO, err error) {
-	data, err = s.shopService.Create(shop)
+	data, err = s.ShopService.Create(shop)
 	if err != nil {
 		return http.StatusInternalServerError, data, err
 	}
@@ -20,7 +20,7 @@ func (s *Shop) CreateShop(shop *types.ShopDAO) (statusCode int, data *types.Shop
 }
 
 func (s *Shop) UpdateShop(id string, shop *types.ShopDAO) (statusCode int, data *types.ShopDAO, err error) {
-	data, err = s.shopService.Update(id, shop)
+	data, err = s.ShopService.Update(id, shop)
 	if err != nil {
 		return http.StatusInternalServerError, data, err
 	}
@@ -29,7 +29,7 @@ func (s *Shop) UpdateShop(id string, shop *types.ShopDAO) (statusCode int, data 
 }
 
 func (s *Shop) DeleteShop(id string) (statusCode int, data string, err error) {
-	err = s.shopService.Delete(id)
+	err = s.ShopService.Delete(id)
 	if err != nil {
 		return http.StatusInternalServerError, data, err
 	}
@@ -38,7 +38,7 @@ func (s *Shop) DeleteShop(id string) (statusCode int, data string, err error) {
 }
 
 func (s *Shop) GetShop() (statusCode int, data *[]types.ShopDAO, err error) {
-	data, err = s.shopService.SelectALL()
+	data, err = s.ShopService.SelectALL()
 	if err != nil {
 		return http.StatusInternalServerError, data, err
 	}
@@ -46,7 +46,7 @@ func (s *Shop) GetShop() (statusCode int, data *[]types.ShopDAO, err error) {
 }
 
 func (s *Shop) GetShopByID(id string) (statusCode int, data *types.ShopDAO, err error) {
-	data, err = s.shopService.SelectByName(id)
+	data, err = s.ShopService.SelectByName(id)
 	if err != nil {
 		return http.StatusNotFound, data, err
 	}
