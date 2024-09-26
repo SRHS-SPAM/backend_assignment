@@ -19,6 +19,7 @@ func (s *ShopService) SelectByName(name string) (data *types.Shop, err error) {
 	return data, err
 }
 
-func (s *ShopService) Create(data *types.Shop) (data *types.Shop, err error) {
-
+func (s *ShopService) Create(shop *types) (data *types.Shop, err error) {
+	err = s.DB.Create(&shop).Error
+	return data, err
 }
