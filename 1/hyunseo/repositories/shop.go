@@ -19,7 +19,7 @@ func (s *ShopRepository) SelectByName(name string) (data *types.Shop, err error)
 	return data, err
 }
 
-func (s *ShopRepository) Create(shop *types.ShopDAO) (data types.Shop, err error) {
+func (s *ShopRepository) Create(shop types.ShopDAO) (data types.Shop, err error) {
 	input := types.Shop{
 		Name:      shop.Name,
 		OwnerName: shop.OwnerName,

@@ -10,7 +10,7 @@ type ShopService struct {
 	ShopRepository *repositories.ShopRepository
 }
 
-func (s *ShopService) CreateShop(shop *types.ShopDAO) (statusCode int, data types.Shop, err error) {
+func (s *ShopService) CreateShop(shop types.ShopDAO) (statusCode int, data types.Shop, err error) {
 	data, err = s.ShopRepository.Create(shop)
 	if err != nil {
 		return http.StatusInternalServerError, data, err

@@ -14,9 +14,9 @@ type Router struct {
 }
 
 func NewRouter(db *gorm.DB) *Router {
-	shop := repositories.ShopService{DB: db}
-	shopService := service.Shop{ShopService: &shop}
-	shopController := controller.ShopController{Service: &shopService}
+	shop := repositories.ShopRepository{DB: db}
+	shopService := service.ShopService{ShopRepository: &shop}
+	shopController := controller.ShopController{ShopService: &shopService}
 	r := &Router{
 		Engine:         gin.Default(),
 		ShopController: &shopController,

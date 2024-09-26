@@ -18,7 +18,7 @@ func (controller *ShopController) CreateShop(c *gin.Context) {
 		return
 	}
 
-	statusCode, data, err := controller.ShopService.CreateShop(shop)
+	statusCode, data, err := controller.ShopService.CreateShop(*shop)
 	if err != nil {
 		c.JSON(statusCode, gin.H{"data": shop, "error": err})
 		return

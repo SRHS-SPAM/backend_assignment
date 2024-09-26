@@ -1,6 +1,8 @@
 package types
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
 type Food struct {
 	gorm.Model
@@ -11,7 +13,6 @@ type Food struct {
 }
 
 type FoodDAO struct {
-	UUID
 	Name  string `json:"name"`
 	Price int    `json:"price"`
 	Like  int    `json:"like"`
