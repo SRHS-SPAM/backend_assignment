@@ -1,6 +1,7 @@
 package repositories
 
 import (
+	"github.com/3boku/backend1/types"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -15,6 +16,8 @@ func NewRepository(db *gorm.DB) *Repository {
 
 func NewPostgres(dsn string) (db *gorm.DB, err error) {
 	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+
+	err = db.AutoMigrate(&types.Shop{})
 
 	return db, err
 }
