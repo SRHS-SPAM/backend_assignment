@@ -9,7 +9,7 @@ type ShopService struct {
 	DB *gorm.DB
 }
 
-func (s *ShopService) SelectALL() (data []*types.ShopDAO, err error) {
+func (s *ShopService) SelectALL() (data *[]types.ShopDAO, err error) {
 	err = s.DB.Find(&data).Error
 	return data, err
 }
