@@ -4,12 +4,14 @@ import "gorm.io/gorm"
 
 type Food struct {
 	gorm.Model
-	Name  string `json:"name"`
-	Price int    `json:"price"`
-	Like  int    `json:"like"`
+	ShopID string `json:"shopID"`
+	Name   string `json:"name"`
+	Price  int    `json:"price"`
+	Like   int    `json:"like"`
 }
 
 type FoodDAO struct {
+	UUID
 	Name  string `json:"name"`
 	Price int    `json:"price"`
 	Like  int    `json:"like"`
