@@ -87,9 +87,7 @@ DATABASE: baemin
 postgresql://localhost:5432/baemin
 
 ### Tips
-shop 을 모아두는 테이블을 하나 두고, 각각의 food를 저장할 각 shop의 테이블을 만들어야 해요.
-이런식의 테이블 구조를 가질꺼에요.
-![img.png](img.png)
+shop 을 모아두는 테이블을 하나, food를 모아두는 테이블을 두고, food에 shop의 id를 저장할 수 있어요.
 
 ## API 명세서
 Postman 혹은 Swegger를 사용해서 작업한 API를 정리해서 PR에 첨부해야해요.
