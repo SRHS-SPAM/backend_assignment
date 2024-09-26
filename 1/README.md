@@ -61,13 +61,30 @@ food 엔드포인트 안에서는 이런 음식에 관련된 기능을 만들어
 }
 ```
 
+## 파일 구성
+1폴더안에 자신의 이름으로 된 폴더를 만들어 작업을 합니다. <br> <br>
+커밋은 기능 단위로 하고, 푸시는 그날 작업이 끝나면 합니다. <br> <br>
+작업이 끝나면 PR을 올리고 코드리뷰를 받습니다.
+
 ## DataBase
 ### 데이터베이스 사용법
-데이터베이스는 postgresql을 사용해야되요. <br/>
-설치없이 바로 사용할 수 있도록 도커환경을 사용할꺼에요. <br/>
+데이터베이스는 postgresql을 사용할 것 이에요. 그렇기에 ORM을 사용해야해요.<br/> <br>
+Node 환경(express, Nest JS 등)에서는 TypeORM 혹은 Prisma를 사용해요. <br> <br>
+Java 환경(Java & Kotlin Spring)에서는 JPA를 사용해요. <br> <br>
+설치없이 바로 사용할 수 있도록 도커환경을 사용할꺼에요. docker-compose.yaml파일을 건들지 말고, 밑에 있는 명령어만 실행시키면, DB가 실행되요.<br/>
 > 도커가 설치 되어있지 않다면 아래 아티클을 보고 도커를 설치해요
 > https://mz-moonzoo.tistory.com/40
 
+```shell
+docker-compose up
+```
+하나의 터미널에서 실행시킨 후 새로운 터미널을 열어서 작업해요.
+```
+USER: postgres
+PASSWORD: postgres
+DATABASE: baemin
+```
+postgresql://localhost:5432/baemin
 
 ### Tips
 shop 을 모아두는 테이블을 하나 두고, 각각의 food를 저장할 각 shop의 테이블을 만들어야 해요.
