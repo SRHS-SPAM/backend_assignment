@@ -63,3 +63,13 @@ func (controller *ShopController) DeleteShop(c *gin.Context) {
 
 	c.JSON(statusCode, gin.H{"data": data, "error": err})
 }
+
+func (controller *ShopController) GetShop(c *gin.Context) {
+	statusCode, shops, err := controller.Service.GetShop()
+	if err != nil {
+		c.JSON(statusCode, gin.H{"data": shops, "error": err})
+		return
+	}
+
+	c.JSON(statusCode, gin.H{"data": shops, "error": err})
+}
