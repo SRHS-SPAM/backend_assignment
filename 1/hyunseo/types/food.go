@@ -2,7 +2,7 @@ package types
 
 import "gorm.io/gorm"
 
-type FoodDTO struct {
+type Food struct {
 	gorm.Model
 	Name  string `json:"name"`
 	Price int    `json:"price"`
