@@ -21,9 +21,10 @@ func NewCmd() *Cmd {
 
 	c := &Cmd{
 		repository: repositories.NewRepository(db),
-		router:     router.NewRouter(),
+		router:     router.NewRouter(db),
 	}
 
+	c.router.SetupRoutes()
 	err = c.router.ServerStart()
 	if err != nil {
 		panic(err)
