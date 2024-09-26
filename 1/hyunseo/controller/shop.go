@@ -8,7 +8,7 @@ import (
 )
 
 type ShopController struct {
-	Service *service.Shop
+	ShopService *service.ShopService
 }
 
 func (controller *ShopController) CreateShop(c *gin.Context) {
@@ -18,7 +18,7 @@ func (controller *ShopController) CreateShop(c *gin.Context) {
 		return
 	}
 
-	statusCode, data, err := controller.Service.CreateShop(shop)
+	statusCode, data, err := controller.ShopService.CreateShop(shop)
 	if err != nil {
 		c.JSON(statusCode, gin.H{"data": shop, "error": err})
 		return
@@ -29,7 +29,7 @@ func (controller *ShopController) CreateShop(c *gin.Context) {
 func (controller *ShopController) GetShopByID(c *gin.Context) {
 	id := c.Param("id")
 
-	statusCode, shop, err := controller.Service.GetShopByID(id)
+	statusCode, shop, err := controller.ShopService.GetShopByID(id)
 	if err != nil {
 		c.JSON(statusCode, gin.H{"data": shop, "error": err})
 		return
@@ -45,7 +45,7 @@ func (controller *ShopController) UpdateShop(c *gin.Context) {
 		return
 	}
 
-	statusCode, data, err := controller.Service.UpdateShop(id, shop)
+	statusCode, data, err := controller.ShopService.UpdateShop(id, shop)
 	if err != nil {
 		c.JSON(statusCode, gin.H{"data": shop, "error": err})
 		return
@@ -55,7 +55,7 @@ func (controller *ShopController) UpdateShop(c *gin.Context) {
 
 func (controller *ShopController) DeleteShop(c *gin.Context) {
 	id := c.Param("id")
-	statusCode, data, err := controller.Service.DeleteShop(id)
+	statusCode, data, err := controller.ShopService.DeleteShop(id)
 	if err != nil {
 		c.JSON(statusCode, gin.H{"data": data, "error": err})
 		return
@@ -65,7 +65,7 @@ func (controller *ShopController) DeleteShop(c *gin.Context) {
 }
 
 func (controller *ShopController) GetShop(c *gin.Context) {
-	statusCode, shops, err := controller.Service.GetShop()
+	statusCode, shops, err := controller.ShopService.GetShop()
 	if err != nil {
 		c.JSON(statusCode, gin.H{"data": shops, "error": err})
 		return
