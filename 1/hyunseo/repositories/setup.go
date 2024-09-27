@@ -19,5 +19,7 @@ func NewPostgres(dsn string) (db *gorm.DB, err error) {
 
 	err = db.AutoMigrate(&types.Shop{})
 
+	err = db.AutoMigrate(&types.Food{})
+
 	return db, err
 }

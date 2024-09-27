@@ -11,15 +11,20 @@ import (
 type Router struct {
 	Engine         *gin.Engine
 	ShopController *controller.ShopController
+	FoodController *controller.FoodController
 }
 
 func NewRouter(db *gorm.DB) *Router {
 	shop := repositories.ShopRepository{DB: db}
 	shopService := service.ShopService{ShopRepository: &shop}
 	shopController := controller.ShopController{ShopService: &shopService}
+	food := repositories.FoodRepository{DB: db}
+	foodService := service.FoodService{FoodRepository: &food}
+	foodController := controller.FoodController{FoodService: &foodService}
 	r := &Router{
 		Engine:         gin.Default(),
 		ShopController: &shopController,
+		FoodController: &foodController,
 	}
 
 	return r
@@ -41,10 +46,10 @@ func (r *Router) SetupRoutes() {
 
 	food := r.Engine.Group("food")
 	{
-		food.PUT("/shopId/:id", r.ShopController.UpdateShop)
-		food.DELETE("/shopId/:id", r.ShopController.DeleteShop)
-		food.GET("/shopId", r.ShopController.GetShop)
-		food.GET("/shopId/:id", r.ShopController.GetShopByID)
-		food.POST("/shopId/:id", r.ShopController.CreateShop)
+		food.PUT("/:shopId/:id", r.FoodController.UpdateFood)
+		food.DELETE("/:shopId/:id", r.FoodController.DeleteFood)
+		food.GET("/:shopId", r.FoodController.GetFood)
+		food.GET("/:shopId/:id", r.FoodController.GetFoodByID)
+		food.POST("/:shopId", r.FoodController.CreateFood)
 	}
 }

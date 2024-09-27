@@ -7,11 +7,11 @@ import (
 )
 
 type FoodService struct {
-	foodRepository *repositories.FoodRepository
+	FoodRepository *repositories.FoodRepository
 }
 
 func (f *FoodService) CreateFood(shopID string, food *types.FoodInput) (statusCode int, data *types.FoodInput, err error) {
-	data, err = f.foodRepository.Create(shopID, food)
+	data, err = f.FoodRepository.Create(shopID, food)
 	if err != nil {
 		return http.StatusInternalServerError, data, err
 	}
@@ -20,7 +20,7 @@ func (f *FoodService) CreateFood(shopID string, food *types.FoodInput) (statusCo
 }
 
 func (f *FoodService) UpdateFood(id string, food *types.FoodInput) (statusCode int, data *types.Food, err error) {
-	data, err = f.foodRepository.Update(id, food)
+	data, err = f.FoodRepository.Update(id, food)
 	if err != nil {
 		return http.StatusInternalServerError, data, err
 	}
@@ -29,7 +29,7 @@ func (f *FoodService) UpdateFood(id string, food *types.FoodInput) (statusCode i
 }
 
 func (f *FoodService) DeleteFood(id string) (statusCode int, data string, err error) {
-	err = f.foodRepository.Delete(id)
+	err = f.FoodRepository.Delete(id)
 	if err != nil {
 		return http.StatusInternalServerError, data, err
 	}
@@ -38,7 +38,7 @@ func (f *FoodService) DeleteFood(id string) (statusCode int, data string, err er
 }
 
 func (f *FoodService) SeleteAll(id string) (statusCode int, data *[]types.Food, err error) {
-	data, err = f.foodRepository.SelectALL(id)
+	data, err = f.FoodRepository.SelectALL(id)
 	if err != nil {
 		return http.StatusInternalServerError, data, err
 	}
@@ -47,7 +47,7 @@ func (f *FoodService) SeleteAll(id string) (statusCode int, data *[]types.Food, 
 }
 
 func (f *FoodService) SeleteByID(id string) (statusCode int, data *types.Food, err error) {
-	data, err = f.foodRepository.SelectByName(id)
+	data, err = f.FoodRepository.SelectByName(id)
 	if err != nil {
 		return http.StatusInternalServerError, data, err
 	}

@@ -1,6 +1,7 @@
 package repositories
 
 import (
+	"errors"
 	"github.com/3boku/backend1/types"
 	"gorm.io/gorm"
 )
@@ -10,12 +11,15 @@ type FoodRepository struct {
 }
 
 func (f *FoodRepository) SelectALL(shopID string) (data *[]types.Food, err error) {
-	err = f.DB.Find(&data, "shopID =?", shopID).Error
+	err = f.DB.Find(&data, "shop_id =?", shopID).Error
 	return data, err
 }
 
 func (f *FoodRepository) SelectByName(id string) (data *types.Food, err error) {
 	err = f.DB.First(&data, "id =?", id).Error
+	if data.ID == 0 {
+		return nil, errors.New("food not found")
+	}
 	return data, err
 }
 
