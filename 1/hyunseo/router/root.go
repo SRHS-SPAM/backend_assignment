@@ -38,4 +38,13 @@ func (r *Router) SetupRoutes() {
 		shop.GET("/:id", r.ShopController.GetShopByID)
 		shop.POST("", r.ShopController.CreateShop)
 	}
+
+	food := r.Engine.Group("food")
+	{
+		food.PUT("/shopId/:id", r.ShopController.UpdateShop)
+		food.DELETE("/shopId/:id", r.ShopController.DeleteShop)
+		food.GET("/shopId", r.ShopController.GetShop)
+		food.GET("/shopId/:id", r.ShopController.GetShopByID)
+		food.POST("/shopId/:id", r.ShopController.CreateShop)
+	}
 }
