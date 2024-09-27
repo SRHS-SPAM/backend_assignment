@@ -1,48 +1,53 @@
 package repositories
 
-//import (
-//	"github.com/3boku/backend1/types"
-//	"github.com/google/uuid"
-//	"gorm.io/gorm"
-//)
-//
-//type FoodRepository struct {
-//	DB *gorm.DB
-//}
-//
-//func (s *FoodRepository) SelectALL() (data *[]types.FoodDAO, err error) {
-//	err = s.DB.Find(&data).Error
-//	return data, err
-//}
-//
-//func (s *FoodRepository) SelectByName(name string) (data *types.FoodDAO, err error) {
-//	err = s.DB.First(&data, "name =?", name).Error
-//	return data, err
-//}
-//
-//func (s *FoodRepository) Create(shop *types.FoodDAO) (data *types.FoodDAO, err error) {
-//	id, _ := uuid.NewUUID()
-//	input := types.Shop{
-//		UUID:      id,
-//		Name:      shop.Name,
-//		OwnerName: shop.OwnerName,
-//		Category:  shop.Category,
-//	}
-//	err = s.DB.Create(&input).Error
-//	return shop, err
-//}
-//
-//func (s *FoodRepository) Update(id string, shop *types.ShopDAO) (data *types.ShopDAO, err error) {
-//	input := types.Shop{
-//		Name:      shop.Name,
-//		OwnerName: shop.OwnerName,
-//		Category:  shop.Category,
-//	}
-//	err = s.DB.Model(&types.Shop{}).Where("id =?", id).Save(input).Error
-//	return data, err
-//}
-//
-//func (s *FoodRepository) Delete(id string) (err error) {
-//	err = s.DB.Delete(&types.FoodDAO{}, id).Error
-//	return err
-//}
+import (
+	"github.com/3boku/backend1/types"
+	"gorm.io/gorm"
+)
+
+type FoodRepository struct {
+	DB *gorm.DB
+}
+
+func (f *FoodRepository) SelectALL(shopID string) (data *[]types.Food, err error) {
+	err = f.DB.Find(&data, "shopID =?", shopID).Error
+	return data, err
+}
+
+func (f *FoodRepository) SelectByName(id string) (data *types.Food, err error) {
+	err = f.DB.First(&data, "id =?", id).Error
+	return data, err
+}
+
+func (f *FoodRepository) Create(shopID string, food *types.FoodInput) (data *types.FoodInput, err error) {
+	input := &types.Food{
+		Name:   food.Name,
+		Price:  food.Price,
+		Like:   0,
+		ShopID: shopID,
+	}
+	err = f.DB.Create(input).Error
+	return food, err
+}
+
+func (f *FoodRepository) Update(id string, food *types.FoodInput) (data *types.Food, err error) {
+	input := &types.Food{
+		Name:  food.Name,
+		Price: food.Price,
+	}
+
+	// Updates를 사용하여 지정된 필드만 업데이트
+	err = f.DB.Model(&types.Shop{}).Where("id = ?", id).Updates(input).Error
+	if err != nil {
+		return nil, err
+	}
+
+	// 업데이트된 데이터를 반환
+	err = f.DB.First(&data, id).Error
+	return data, err
+}
+
+func (f *FoodRepository) Delete(id string) (err error) {
+	err = f.DB.Delete(&types.Food{}, id).Error
+	return err
+}
