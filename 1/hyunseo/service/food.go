@@ -10,7 +10,7 @@ type FoodService struct {
 	foodRepository *repositories.FoodRepository
 }
 
-func (f *FoodService) CreateShop(shopID string, food *types.FoodInput) (statusCode int, data *types.FoodInput, err error) {
+func (f *FoodService) CreateFood(shopID string, food *types.FoodInput) (statusCode int, data *types.FoodInput, err error) {
 	data, err = f.foodRepository.Create(shopID, food)
 	if err != nil {
 		return http.StatusInternalServerError, data, err
@@ -19,7 +19,7 @@ func (f *FoodService) CreateShop(shopID string, food *types.FoodInput) (statusCo
 	return http.StatusCreated, data, nil
 }
 
-func (f *FoodService) UpdateShop(id string, food *types.FoodInput) (statusCode int, data *types.Food, err error) {
+func (f *FoodService) UpdateFood(id string, food *types.FoodInput) (statusCode int, data *types.Food, err error) {
 	data, err = f.foodRepository.Update(id, food)
 	if err != nil {
 		return http.StatusInternalServerError, data, err
@@ -28,7 +28,7 @@ func (f *FoodService) UpdateShop(id string, food *types.FoodInput) (statusCode i
 	return http.StatusOK, data, nil
 }
 
-func (f *FoodService) DeleteShop(id string) (statusCode int, data string, err error) {
+func (f *FoodService) DeleteFood(id string) (statusCode int, data string, err error) {
 	err = f.foodRepository.Delete(id)
 	if err != nil {
 		return http.StatusInternalServerError, data, err
