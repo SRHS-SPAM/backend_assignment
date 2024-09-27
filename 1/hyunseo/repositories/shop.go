@@ -14,8 +14,8 @@ func (s *ShopRepository) SelectALL() (data *[]types.Shop, err error) {
 	return data, err
 }
 
-func (s *ShopRepository) SelectByName(name string) (data *types.Shop, err error) {
-	err = s.DB.First(&data, "name =?", name).Error
+func (s *ShopRepository) SelectByID(id string) (data *types.Shop, err error) {
+	err = s.DB.First(&data, "id =?", id).Error
 	return data, err
 }
 

@@ -15,7 +15,6 @@ type Food struct {
 type FoodInput struct {
 	Name  string `json:"name"`
 	Price int    `json:"price"`
-	Like  int    `json:"like"`
 }
 
 type FoodDAO struct {

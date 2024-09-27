@@ -46,7 +46,7 @@ func (s *ShopService) GetShop() (statusCode int, data *[]types.Shop, err error) 
 }
 
 func (s *ShopService) GetShopByID(id string) (statusCode int, data *types.Shop, err error) {
-	data, err = s.ShopRepository.SelectByName(id)
+	data, err = s.ShopRepository.SelectByID(id)
 	if err != nil {
 		return http.StatusNotFound, data, err
 	}
