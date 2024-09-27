@@ -31,7 +31,7 @@ func NewRouter(db *gorm.DB) *Router {
 }
 
 func (r *Router) ServerStart() error {
-	return r.Engine.Run(":8080")
+	return r.Engine.Run(":8000")
 }
 
 func (r *Router) SetupRoutes() {
@@ -51,5 +51,7 @@ func (r *Router) SetupRoutes() {
 		food.GET("/:shopId", r.FoodController.GetFood)
 		food.GET("/:shopId/:id", r.FoodController.GetFoodByID)
 		food.POST("/:shopId", r.FoodController.CreateFood)
+		food.POST("/:shopId/:id/like", r.FoodController.Like)
+		food.POST("/:shopId/:id/unlike", r.FoodController.UnLike)
 	}
 }

@@ -75,3 +75,25 @@ func (f *FoodController) GetFood(c *gin.Context) {
 
 	c.JSON(statusCode, gin.H{"data": shops, "error": err})
 }
+
+func (f *FoodController) Like(c *gin.Context) {
+	id := c.Param("id")
+	statusCode, data, err := f.FoodService.Like(id)
+	if err != nil {
+		c.JSON(statusCode, gin.H{"data": data, "error": err})
+		return
+	}
+
+	c.JSON(statusCode, gin.H{"data": data, "error": err})
+}
+
+func (f *FoodController) UnLike(c *gin.Context) {
+	id := c.Param("id")
+	statusCode, data, err := f.FoodService.UnLike(id)
+	if err != nil {
+		c.JSON(statusCode, gin.H{"data": data, "error": err})
+		return
+	}
+
+	c.JSON(statusCode, gin.H{"data": data, "error": err})
+}

@@ -54,3 +54,21 @@ func (f *FoodService) SeleteByID(id string) (statusCode int, data *types.Food, e
 
 	return http.StatusOK, data, nil
 }
+
+func (f *FoodService) Like(id string) (statusCode int, data *types.Food, err error) {
+	data, err = f.FoodRepository.Like(id)
+	if err != nil {
+		return http.StatusInternalServerError, data, err
+	}
+
+	return http.StatusOK, data, nil
+}
+
+func (f *FoodService) UnLike(id string) (statusCode int, data *types.Food, err error) {
+	data, err = f.FoodRepository.UnLike(id)
+	if err != nil {
+		return http.StatusInternalServerError, data, err
+	}
+
+	return http.StatusOK, data, nil
+}

@@ -41,7 +41,7 @@ func (f *FoodRepository) Update(id string, food *types.FoodInput) (data *types.F
 	}
 
 	// Updates를 사용하여 지정된 필드만 업데이트
-	err = f.DB.Model(&types.Shop{}).Where("id = ?", id).Updates(input).Error
+	err = f.DB.Model(&types.Food{}).Where("id = ?", id).Updates(input).Error
 	if err != nil {
 		return nil, err
 	}
@@ -54,4 +54,51 @@ func (f *FoodRepository) Update(id string, food *types.FoodInput) (data *types.F
 func (f *FoodRepository) Delete(id string) (err error) {
 	err = f.DB.Delete(&types.Food{}, id).Error
 	return err
+}
+
+func (f *FoodRepository) Like(id string) (data *types.Food, err error) {
+	food, err := f.SelectByName(id)
+	if err != nil {
+		return nil, err
+	}
+
+	input := &types.Food{
+		Like: food.Like + 1,
+	}
+
+	err = f.DB.Model(&types.Food{}).Where("id = ?", id).Updates(input).Error
+	if err != nil {
+		return nil, err
+	}
+
+	// 업데이트된 데이터를 반환
+	err = f.DB.First(&data, id).Error
+	return data, err
+}
+
+func (f *FoodRepository) UnLike(id string) (data *types.Food, err error) {
+	food, err := f.SelectByName(id)
+	if err != nil {
+		return nil, err
+	}
+
+	if food.Like > 0 {
+		food.Like -= 1 // 1일 때 0으로, 그 이상의 경우에는 1씩 감소
+	}
+	if food.Like == 0 {
+		food.Like = 0
+	}
+
+	input := &types.Food{
+		Like: food.Like,
+	}
+
+	err = f.DB.Model(&types.Food{}).Where("id = ?", id).Updates(input).Error
+	if err != nil {
+		return nil, err
+	}
+
+	// 업데이트된 데이터를 반환
+	err = f.DB.First(&data, id).Error
+	return data, err
 }
