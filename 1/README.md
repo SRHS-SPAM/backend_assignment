@@ -56,7 +56,8 @@ food 엔드포인트 안에서는 이런 음식에 관련된 기능을 만들어
     "uuid" : "string", // uuid
     "name" : "string", // 음식이름
     "price" : int, // 음식가격
-    "like" : int // 좋아요 수
+    "like" : int, // 좋아요 수
+    "shopID" : string // 식당의 uuid
   }
 }
 ```
